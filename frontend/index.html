@@ -3,394 +3,417 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#060b18">
-  <meta name="description" content="Kenya Presidential Election 2027 — Secure phone-based voting with M-Pesa">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Kenya General Election 2027</title>
-  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#003300">
+  <title>IEBC — Kenya General Election 2027</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #060b18;
-      --bg2:       #0d1425;
-      --bg3:       #141d35;
-      --surface:   #1a2440;
-      --border:    rgba(255,255,255,0.08);
-      --red:       #c0392b;
-      --red-light: #e74c3c;
-      --green:     #1a7a4a;
-      --green-lt:  #27ae60;
-      --gold:      #f0b429;
-      --blue:      #2563eb;
-      --blue-lt:   #3b82f6;
-      --orange:    #ea580c;
-      --orange-lt: #f97316;
-      --white:     #ffffff;
-      --muted:     rgba(255,255,255,0.5);
-      --soft:      rgba(255,255,255,0.15);
+      --black:   #0a0a0a;
+      --dk:      #111111;
+      --panel:   #1a1a1a;
+      --border:  rgba(255,255,255,0.1);
+      --green:   #006600;
+      --green2:  #009900;
+      --green3:  #00cc44;
+      --red:     #bb0000;
+      --red2:    #dd2222;
+      --gold:    #c8a400;
+      --gold2:   #f0c820;
+      --white:   #f8f6f0;
+      --muted:   rgba(248,246,240,0.5);
+      --soft:    rgba(248,246,240,0.12);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background: var(--black);
       color: var(--white);
-      min-height: 100vh;
+      min-height: 100svh;
       overflow-x: hidden;
     }
 
-    /* ── FLAG STRIP ─────────────────────────────────── */
-    .flag-strip {
+    /* ── KENYA FLAG BAR ─── */
+    .flag-bar {
       display: flex;
-      height: 5px;
-      width: 100%;
+      height: 6px;
     }
-    .flag-strip div { flex: 1; }
-    .f-black  { background: #000; }
-    .f-white  { background: #fff; }
-    .f-red    { background: var(--red); }
-    .f-green  { background: var(--green); }
+    .flag-bar div { flex:1; }
 
-    /* ── HERO ───────────────────────────────────────── */
+    /* ── IEBC HEADER ─── */
+    .iebc-header {
+      background: #0a1a0a;
+      border-bottom: 2px solid var(--green);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+    }
+    .iebc-left { display: flex; align-items: center; gap: 16px; }
+    .iebc-logo-wrap {
+      width: 60px; height: 60px;
+      flex-shrink: 0;
+    }
+    .iebc-logo-wrap svg { width: 100%; height: 100%; }
+    .iebc-wordmark { }
+    .iebc-wordmark .org { font-family: 'EB Garamond', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.04em; }
+    .iebc-wordmark .full { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .secure-badge {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(0,102,0,0.2);
+      border: 1px solid rgba(0,153,0,0.4);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: var(--green3);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+    .secure-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green3); animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ── HERO ─── */
     .hero {
       position: relative;
-      background: var(--bg2);
-      padding: 0 0 48px;
+      background: linear-gradient(180deg, #0a1a0a 0%, #050d05 100%);
+      padding: 48px 20px 56px;
       text-align: center;
       overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(192,57,43,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 20% 100%, rgba(26,122,74,0.12) 0%, transparent 60%);
+      content:'';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,102,0,0.25) 0%, transparent 70%);
       pointer-events: none;
     }
-
-    .hero-seal {
-      margin: 40px auto 20px;
-      width: 72px; height: 72px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 36px;
-      position: relative; z-index: 1;
+    .kenya-flag-svg {
+      width: 80px;
+      margin: 0 auto 20px;
+      display: block;
+      filter: drop-shadow(0 0 12px rgba(0,153,0,0.3));
     }
-
     .hero-eyebrow {
       font-size: 11px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 10px;
-      position: relative; z-index: 1;
+      margin-bottom: 12px;
+      font-weight: 600;
     }
-
     .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 10vw, 80px);
-      line-height: 0.95;
-      letter-spacing: 0.02em;
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(38px, 9vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
       color: var(--white);
+      margin-bottom: 6px;
       position: relative; z-index: 1;
     }
-
-    .hero-title .accent { color: var(--red); }
-
+    .hero-title em { font-style: italic; color: var(--green3); }
     .hero-year {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(28px, 6vw, 48px);
+      font-size: clamp(20px, 5vw, 36px);
+      letter-spacing: 0.2em;
       color: var(--gold);
-      letter-spacing: 0.1em;
       display: block;
-      position: relative; z-index: 1;
+      margin-bottom: 18px;
     }
-
-    .hero-quote {
-      max-width: 520px;
-      margin: 20px auto 0;
-      font-size: 13px;
-      line-height: 1.7;
+    .hero-sub {
+      font-size: 14px;
       color: var(--muted);
-      font-style: italic;
-      position: relative; z-index: 1;
-      padding: 0 24px;
-    }
-    .hero-quote strong { color: rgba(255,255,255,0.8); font-style: normal; }
-
-    .hero-cta-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 24px;
-      position: relative; z-index: 1;
-    }
-    .live-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--red);
-      animation: pulse 1.4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity:1; transform:scale(1); }
-      50% { opacity:.5; transform:scale(1.4); }
-    }
-    .live-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
     }
 
-    /* ── STEPS NAV ──────────────────────────────────── */
-    .steps-nav {
-      background: var(--bg3);
+    /* ── PROGRESS STEPPER ─── */
+    .stepper {
+      background: #0d1a0d;
       border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
+      padding: 16px 20px 12px;
       position: sticky; top: 0; z-index: 100;
     }
-    .steps-track {
+    .stepper-track {
+      max-width: 440px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0;
-      max-width: 320px;
-      margin: 0 auto 8px;
     }
-    .step-dot {
+    .s-step {
       width: 32px; height: 32px;
       border-radius: 50%;
       border: 2px solid var(--soft);
-      background: transparent;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 12px; font-weight: 700;
       color: var(--muted);
-      transition: all 0.3s;
       flex-shrink: 0;
+      transition: all .3s;
     }
-    .step-dot.active {
-      border-color: var(--gold);
-      background: var(--gold);
-      color: #000;
-    }
-    .step-dot.done {
-      border-color: var(--green-lt);
-      background: var(--green-lt);
-      color: #fff;
-    }
-    .step-line {
-      flex: 1;
-      height: 2px;
-      background: var(--soft);
-    }
-    .step-labels {
+    .s-step.active { border-color: var(--gold); background: var(--gold); color: #000; }
+    .s-step.done { border-color: var(--green3); background: var(--green3); color: #000; }
+    .s-line { flex: 1; height: 2px; background: var(--soft); margin: 0 4px; transition: background .3s; }
+    .s-line.done { background: var(--green3); }
+    .stepper-labels {
+      max-width: 440px;
+      margin: 8px auto 0;
       display: flex;
       justify-content: space-between;
-      max-width: 320px;
-      margin: 0 auto;
-      padding: 0 4px;
     }
-    .step-labels span {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
+    .stepper-labels span {
+      font-size: 9px;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
       flex: 1;
       text-align: center;
     }
 
-    /* ── PANELS ─────────────────────────────────────── */
-    .step-panel { display: none; }
-    .step-panel.active { display: block; }
-
-    .section-wrap {
-      max-width: 600px;
+    /* ── PANELS ─── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .wrap {
+      max-width: 580px;
       margin: 0 auto;
-      padding: 32px 20px 48px;
+      padding: 32px 20px 60px;
     }
 
-    .section-eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      letter-spacing: 0.03em;
+    .eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .panel-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 32px; font-weight: 700;
       color: var(--white);
       margin-bottom: 6px;
+      line-height: 1.15;
     }
+    .panel-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.5; }
 
-    .section-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-
-    /* ── CANDIDATE CARDS ────────────────────────────── */
-    .candidates-grid {
-      display: flex;
-      flex-direction: column;
+    /* ── REGISTRATION FORM ─── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
+    @media(max-width:480px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-col-full { grid-column: 1/-1; }
 
-    .cand-card {
-      background: var(--bg3);
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field input, .field select {
+      background: #111;
       border: 1.5px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.15s;
-      user-select: none;
-      position: relative;
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+      -webkit-appearance: none;
     }
-    .cand-card:hover { transform: translateY(-2px); border-color: var(--soft); }
-    .cand-card.selected { border-color: var(--gold) !important; }
+    .field input:focus, .field select:focus { border-color: var(--gold); }
+    .field input::placeholder { color: rgba(255,255,255,0.2); }
+    .field-err { font-size: 11px; color: #ff6b6b; min-height: 16px; }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); pointer-events: none;
+    }
+    .select-wrap select { width: 100%; }
 
-    .cand-top {
+    /* ── CANDIDATE CARDS ─── */
+    .ballot-header {
+      background: #0d1a0d;
+      border: 1px solid rgba(0,102,0,0.4);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .ballot-seal { font-size: 32px; }
+    .ballot-info .bh-title { font-family: 'EB Garamond', serif; font-size: 17px; font-weight: 700; }
+    .ballot-info .bh-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .ballot-paper {
+      background: #f9f7f0;
+      border: 3px solid #000;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .ballot-paper-header {
+      background: #000;
+      color: #f9f7f0;
+      text-align: center;
+      padding: 12px 16px;
+    }
+    .ballot-paper-header .bp-title { font-family: 'EB Garamond', serif; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; }
+    .ballot-paper-header .bp-sub { font-size: 10px; opacity: 0.7; margin-top: 2px; letter-spacing: 0.08em; }
+    .ballot-paper-instr {
+      background: #f0ece0;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 16px;
+      font-size: 12px;
+      color: #333;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .candidate-row {
       display: flex;
       align-items: stretch;
-      gap: 0;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      transition: background .15s;
+      background: #f9f7f0;
+      position: relative;
     }
+    .candidate-row:last-child { border-bottom: none; }
+    .candidate-row:hover { background: #f0f7e8; }
+    .candidate-row.selected { background: #e8f5e0; }
 
-    /* Candidate portrait area */
-    .cand-portrait {
-      width: 100px;
-      min-height: 110px;
-      flex-shrink: 0;
+    .ballot-num {
+      width: 36px;
+      background: #000;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-    }
-    .cand-portrait svg { display: block; }
-
-    .cand-body {
-      flex: 1;
-      padding: 16px 16px 14px;
+      font-family: 'EB Garamond', serif;
+      font-size: 20px;
+      font-weight: 700;
+      flex-shrink: 0;
     }
 
-    .cand-party-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 8px;
-    }
-
-    .cand-names {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 0.04em;
-      line-height: 1.1;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .cand-names .sep { color: var(--muted); margin: 0 4px; }
-
-    .cand-desc {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .poll-row {
+    .cand-portrait-area {
+      width: 90px;
+      min-height: 100px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      border-right: 1px solid #ccc;
+      flex-shrink: 0;
+      padding: 8px;
     }
-    .poll-track {
+
+    .party-logo-area {
+      width: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #ccc;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .cand-info-area {
       flex: 1;
-      height: 4px;
-      background: var(--soft);
-      border-radius: 2px;
-      overflow: hidden;
+      padding: 12px 14px;
     }
-    .poll-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
-    .poll-pct { font-size: 12px; font-weight: 600; }
-
-    .cand-check {
-      position: absolute;
-      top: 12px; right: 12px;
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      border: 2px solid var(--soft);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s;
-    }
-    .cand-card.selected .cand-check {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-    .cand-check::after {
-      content: '✓';
-      font-size: 12px;
-      color: #000;
-      opacity: 0;
+    .cand-name-big {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
       font-weight: 700;
+      color: #000;
+      line-height: 1.2;
     }
-    .cand-card.selected .cand-check::after { opacity: 1; }
+    .cand-running-mate { font-size: 12px; color: #444; margin-top: 2px; }
+    .cand-party-name { font-size: 11px; color: #666; margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cand-tagline { font-size: 11px; color: #555; margin-top: 6px; font-style: italic; }
 
-    /* ── BUTTONS ─────────────────────────────────────── */
+    .ballot-tick {
+      width: 36px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .tick-box {
+      width: 24px; height: 24px;
+      border: 2px solid #333;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      transition: all .2s;
+    }
+    .candidate-row.selected .tick-box {
+      background: #003300;
+      border-color: #003300;
+      color: #fff;
+    }
+
+    /* ── REGISTRATION FIELDS ─── */
+    .phone-row {
+      display: flex;
+      align-items: center;
+      background: #111;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .phone-row:focus-within { border-color: var(--gold); }
+    .phone-pfx {
+      padding: 12px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .phone-row input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 12px 14px;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .phone-row input::placeholder { font-weight: 400; letter-spacing: normal; color: rgba(255,255,255,0.2); }
+
+    /* ── BUTTONS ─── */
     .btn {
-      display: block;
-      width: 100%;
-      padding: 16px 24px;
-      border-radius: 12px;
+      display: block; width: 100%;
+      padding: 15px 24px;
+      border-radius: 10px;
       border: none;
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
       text-align: center;
+      transition: all .2s;
       letter-spacing: 0.02em;
     }
-    .btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; }
+    .btn:disabled { opacity: .35; cursor: not-allowed; transform: none !important; }
     .btn:not(:disabled):hover { transform: translateY(-1px); }
-    .btn:not(:disabled):active { transform: translateY(0) scale(0.99); }
-
-    .btn-primary {
-      background: var(--gold);
-      color: #000;
-    }
-    .btn-primary:not(:disabled):hover { background: #f5c040; }
-
-    .btn-mpesa {
-      background: linear-gradient(135deg, #00a651, #007a3d);
-      color: #fff;
-    }
-    .btn-mpesa:not(:disabled):hover { filter: brightness(1.1); }
-
-    .btn-vote {
-      background: var(--red);
-      color: #fff;
-      margin-top: 8px;
-    }
-    .btn-vote:not(:disabled):hover { background: var(--red-light); }
-
+    .btn:not(:disabled):active { transform: scale(.99); }
+    .btn-gold { background: var(--gold); color: #000; }
+    .btn-gold:not(:disabled):hover { background: var(--gold2); }
+    .btn-green { background: #006600; color: #fff; }
+    .btn-green:not(:disabled):hover { background: #008800; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-red:not(:disabled):hover { background: var(--red2); }
+    .btn-mpesa { background: linear-gradient(135deg,#00a651,#007a3d); color: #fff; }
+    .btn-mpesa:not(:disabled):hover { filter: brightness(1.12); }
     .btn-ghost {
       background: transparent;
       color: var(--muted);
@@ -398,626 +421,1059 @@
       margin-top: 10px;
     }
     .btn-ghost:hover { color: var(--white); border-color: var(--soft); }
+    .btn-sm { font-size: 12px; padding: 9px 16px; }
 
-    .btn-sm { font-size: 13px; padding: 10px 16px; }
-
-    .field-hint {
-      font-size: 12px;
-      color: var(--muted);
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    /* ── PHONE STEP ─────────────────────────────────── */
-    .ticket-preview {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      color: var(--white);
-      border: 1px solid var(--border);
-    }
-
-    .field-group { margin-bottom: 20px; }
-    .field-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .phone-wrap {
-      display: flex;
-      align-items: center;
-      background: var(--bg3);
-      border: 1.5px solid var(--border);
+    /* ── INFO / WARNING BOXES ─── */
+    .info-box {
+      display: flex; gap: 12px;
       border-radius: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 13px;
     }
-    .phone-wrap:focus-within { border-color: var(--gold); }
-    .phone-prefix {
-      padding: 14px 14px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
-      border-right: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .phone-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      padding: 14px 14px;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.08em;
-    }
-    .phone-input::placeholder { color: var(--soft); font-weight: 400; }
-    .field-error {
-      font-size: 12px;
-      color: var(--red-light);
-      margin-top: 6px;
-      min-height: 18px;
-    }
+    .info-box.green { background: rgba(0,102,0,0.12); border: 1px solid rgba(0,153,0,0.3); }
+    .info-box.gold { background: rgba(200,164,0,0.1); border: 1px solid rgba(200,164,0,0.3); }
+    .info-box.red { background: rgba(187,0,0,0.12); border: 1px solid rgba(187,0,0,0.35); color: #ff8888; }
+    .info-box-icon { font-size: 20px; flex-shrink: 0; }
+    .info-box-text .ib-title { font-weight: 700; margin-bottom: 3px; }
+    .info-box-text .ib-body { color: var(--muted); line-height: 1.5; font-size: 12px; }
 
-    .info-card {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      background: rgba(26,122,74,0.12);
-      border: 1px solid rgba(26,122,74,0.3);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 24px;
+    /* ── PAYMENT STEP ─── */
+    .mpesa-logo-row {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
     }
-    .info-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
-    .info-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-    .info-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-    /* ── PAYMENT STEP ───────────────────────────────── */
-    .mpesa-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .mpesa-badge {
+    .mpesa-pill {
       background: #00a651;
       color: #fff;
-      font-size: 18px;
       font-weight: 900;
+      font-size: 20px;
       padding: 8px 18px;
-      border-radius: 8px;
-      letter-spacing: 0.05em;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
     }
-    .mpesa-tagline { font-size: 12px; color: var(--muted); }
-
-    .payment-grid {
+    .pay-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
-    .stat-card {
-      background: var(--bg3);
+    .pay-stat {
+      background: #111;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
+      border-radius: 10px;
+      padding: 14px;
       text-align: center;
     }
-    .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
-    .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; }
-    .stat-value.green { color: var(--green-lt); }
-    .stat-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+    .ps-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
+    .ps-val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.04em; }
+    .ps-val.green { color: var(--green3); }
+    .ps-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
 
-    .steps-box {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 18px 20px;
-      margin-bottom: 24px;
+    .stk-steps {
+      background: #111;
       border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 22px;
     }
-    .steps-box-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
-    .steps-list { list-style: none; counter-reset: step-counter; }
-    .steps-list li {
-      counter-increment: step-counter;
-      padding: 8px 0 8px 32px;
-      font-size: 14px;
+    .stk-steps-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
+    .stk-steps ol { list-style: none; counter-reset: stk; }
+    .stk-steps li {
+      counter-increment: stk;
+      padding: 7px 0 7px 30px;
+      font-size: 13px;
       color: rgba(255,255,255,0.8);
       border-bottom: 1px solid var(--border);
       position: relative;
     }
-    .steps-list li:last-child { border-bottom: none; }
-    .steps-list li::before {
-      content: counter(step-counter);
-      position: absolute;
-      left: 0; top: 8px;
+    .stk-steps li:last-child { border-bottom: none; }
+    .stk-steps li::before {
+      content: counter(stk);
+      position: absolute; left: 0; top: 7px;
       width: 20px; height: 20px;
-      background: var(--gold);
-      border-radius: 50%;
-      font-size: 11px;
-      font-weight: 700;
-      color: #000;
+      background: var(--gold); color: #000;
+      border-radius: 50%; font-size: 10px; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
     }
 
-    .waiting-state {
-      text-align: center;
-      padding: 24px 0;
-    }
+    .waiting-box { text-align: center; padding: 20px 0; }
     .spinner {
       width: 44px; height: 44px;
       border: 3px solid var(--soft);
-      border-top-color: var(--gold);
+      border-top-color: var(--green3);
       border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-      margin: 0 auto 16px;
+      animation: spin .9s linear infinite;
+      margin: 0 auto 14px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .waiting-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-    .waiting-sub { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-    .poll-timer { font-size: 12px; color: var(--gold); }
+    .waiting-box .wt { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .waiting-box .ws { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .countdown { font-size: 12px; color: var(--gold); margin-bottom: 12px; }
 
-    .pay-error {
-      background: rgba(192,57,43,0.12);
-      border: 1px solid rgba(192,57,43,0.3);
+    /* ── REVIEW / CAST ─── */
+    .review-ticket {
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+    .rt-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
+
+    .confirmed-badge {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(0,102,0,0.15);
+      border: 1px solid rgba(0,204,68,0.35);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+    .cb-icon { font-size: 24px; }
+    .cb-title { font-size: 15px; font-weight: 700; color: var(--green3); }
+    .cb-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .final-warning {
+      background: rgba(187,0,0,0.1);
+      border: 1px solid rgba(187,0,0,0.3);
       border-radius: 10px;
       padding: 14px 16px;
       font-size: 13px;
-      color: var(--red-light);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    /* ── VOTE CONFIRM STEP ─────────────────────────── */
-    .payment-confirmed {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(26,122,74,0.15);
-      border: 1px solid rgba(39,174,96,0.4);
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin-bottom: 24px;
-    }
-    .pc-icon { font-size: 28px; }
-    .pc-title { font-size: 15px; font-weight: 700; color: var(--green-lt); }
-    .pc-receipt { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-    .warning-box {
-      background: rgba(240,180,41,0.10);
-      border: 1px solid rgba(240,180,41,0.3);
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.5;
+      color: rgba(255,255,255,0.85);
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
-    /* ── SUCCESS STEP ───────────────────────────────── */
-    .success-wrap { text-align: center; padding: 20px 0; }
-    .success-icon { font-size: 64px; margin-bottom: 16px; }
+    /* ── SUCCESS ─── */
+    .success-hero { text-align: center; padding: 24px 0 32px; }
+    .success-icon { font-size: 72px; margin-bottom: 12px; }
     .success-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      letter-spacing: 0.04em;
-      color: var(--green-lt);
-      margin-bottom: 10px;
+      font-family: 'EB Garamond', serif;
+      font-size: 48px; font-weight: 700;
+      color: var(--green3);
+      margin-bottom: 8px;
     }
     .success-sub { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
 
-    .receipt-card {
-      background: var(--bg3);
+    .receipt {
+      background: #111;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      text-align: left;
+      margin-bottom: 20px;
     }
-    .receipt-title {
-      background: var(--surface);
-      padding: 12px 18px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gold);
+    .receipt-head {
+      background: #0d1a0d;
       border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      font-weight: 700;
     }
     .receipt-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 12px 18px;
+      padding: 11px 18px;
       border-bottom: 1px solid var(--border);
       font-size: 13px;
     }
     .receipt-row:last-child { border-bottom: none; }
     .receipt-row span:first-child { color: var(--muted); }
-    .rc-confirmed { color: var(--green-lt); font-weight: 600; }
+    .receipt-row .confirmed { color: var(--green3); font-weight: 700; }
 
-    /* ── FOOTER ─────────────────────────────────────── */
+    /* ── LIVE RESULTS ─── */
+    .results-panel {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      padding: 32px 20px 48px;
+    }
+    .results-wrap { max-width: 580px; margin: 0 auto; }
+    .results-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 28px; font-weight: 700;
+      margin-bottom: 4px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .live-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(187,0,0,0.2);
+      border: 1px solid var(--red2);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: #ff8888;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .live-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: #ff8888; animation: blink 1s ease-in-out infinite; }
+    .results-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+
+    .result-bar-row { margin-bottom: 18px; }
+    .rbr-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .rbr-name { font-size: 14px; font-weight: 700; }
+    .rbr-votes { font-size: 13px; color: var(--muted); }
+    .rbr-track {
+      height: 10px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .rbr-fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+    .rbr-pct { font-size: 12px; font-weight: 700; margin-top: 4px; text-align: right; }
+
+    .total-votes {
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .tv-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .tv-count { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 0.06em; color: var(--white); }
+    .tv-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FOOTER ─── */
     .footer {
       border-top: 1px solid var(--border);
       padding: 24px 20px;
       text-align: center;
     }
-    .footer p { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.8; }
+    .footer p { font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.9; }
 
-    /* ── TOAST ──────────────────────────────────────── */
+    /* ── TOAST ─── */
     .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
+      position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: var(--surface);
+      background: var(--panel);
       border: 1px solid var(--border);
       color: var(--white);
-      padding: 12px 24px;
+      padding: 11px 22px;
       border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 13px; font-weight: 600;
       z-index: 9999;
       opacity: 0;
-      transition: all 0.3s;
+      transition: all .3s;
       white-space: nowrap;
+      max-width: 90vw;
+      text-align: center;
     }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
-    /* ── PORTRAIT SVGs ──────────────────────────────── */
-    /* These are artistic, non-photographic representations */
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
   </style>
 </head>
 <body>
 
-<div id="app">
-
-  <!-- FLAG STRIP -->
-  <div class="flag-strip" aria-hidden="true">
-    <div class="f-black"></div>
-    <div class="f-white" style="flex:0.3"></div>
-    <div class="f-red"></div>
-    <div class="f-white" style="flex:0.3"></div>
-    <div class="f-green"></div>
-  </div>
-
-  <!-- HERO -->
-  <header class="hero" role="banner">
-    <div class="hero-seal" aria-hidden="true">🦅</div>
-    <p class="hero-eyebrow">Republic of Kenya · August 2027</p>
-    <h1 class="hero-title">
-      KENYA<br><span class="accent">DECIDES</span>
-    </h1>
-    <span class="hero-year">GENERAL ELECTION 2027</span>
-    <p class="hero-quote">
-      <strong>"Government of the people, by the people, for the people."</strong><br>
-      Don't wait for permission to shape your nation. The ballot is in your hands — right now.
-    </p>
-    <div class="hero-cta-row">
-      <div class="live-dot" aria-hidden="true"></div>
-      <span class="live-label">Polls Open · Cast Your Vote · M-Pesa Verified</span>
-    </div>
-  </header>
-
-  <!-- STEPS NAV -->
-  <nav class="steps-nav" aria-label="Voting steps">
-    <div class="steps-track">
-      <div class="step-dot active" id="dot0">1</div>
-      <div class="step-line"></div>
-      <div class="step-dot" id="dot1">2</div>
-      <div class="step-line"></div>
-      <div class="step-dot" id="dot2">3</div>
-      <div class="step-line"></div>
-      <div class="step-dot" id="dot3">4</div>
-    </div>
-    <div class="step-labels" aria-hidden="true">
-      <span>Candidate</span>
-      <span>Phone</span>
-      <span>Pay</span>
-      <span>Vote</span>
-    </div>
-  </nav>
-
-  <main id="main-content">
-
-    <!-- STEP 1: SELECT CANDIDATE -->
-    <section id="step-select" class="step-panel active" aria-labelledby="step1-heading">
-      <div class="section-wrap">
-        <p class="section-eyebrow">Step 1 of 4</p>
-        <h2 class="section-title" id="step1-heading">Choose Your President</h2>
-        <p class="section-sub">One vote. One Kenya. Make it count.</p>
-
-        <div class="candidates-grid" role="radiogroup" aria-labelledby="step1-heading">
-
-          <!-- TICKET A: RUTO + KINDIKI -->
-          <div class="cand-card" data-ticket="0"
-               role="radio" aria-checked="false" tabindex="0"
-               onclick="selectTicket(0)" onkeydown="keySelectTicket(event,0)">
-            <div class="cand-top">
-              <div class="cand-portrait" style="background:linear-gradient(160deg,#0d3b24,#1a5c38);">
-                <!-- Stylised silhouette — artistic, not photographic -->
-                <svg width="100" height="110" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <!-- Background shield motif -->
-                  <path d="M50 10 L82 28 L82 62 Q82 88 50 102 Q18 88 18 62 L18 28 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                  <!-- Suit body -->
-                  <path d="M22 110 Q24 85 50 80 Q76 85 78 110Z" fill="#1a5c38"/>
-                  <!-- Collar / lapels -->
-                  <path d="M50 80 L42 93 L50 96 L58 93 Z" fill="#0d3b24"/>
-                  <!-- Head -->
-                  <ellipse cx="50" cy="63" rx="16" ry="18" fill="#c8a882"/>
-                  <!-- Hair -->
-                  <ellipse cx="50" cy="49" rx="16" ry="8" fill="#2a1a0a"/>
-                  <!-- Face features -->
-                  <ellipse cx="44" cy="63" rx="2.5" ry="3" fill="#7a5a38"/>
-                  <ellipse cx="56" cy="63" rx="2.5" ry="3" fill="#7a5a38"/>
-                  <path d="M44 72 Q50 76 56 72" stroke="#7a5a38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                  <!-- Party color accent line at bottom -->
-                  <rect x="18" y="105" width="64" height="4" rx="2" fill="#16a34a"/>
-                </svg>
-              </div>
-              <div class="cand-body">
-                <span class="cand-party-badge" style="background:rgba(22,163,74,0.2);color:#4ade80;border:1px solid rgba(22,163,74,0.3);">Kenya Kwanza</span>
-                <div class="cand-names">Ruto <span class="sep">·</span> Kindiki</div>
-                <div class="cand-desc">Incumbent President · Running for second term</div>
-                <div class="poll-row">
-                  <div class="poll-track"><div class="poll-fill" style="width:41%;background:#16a34a"></div></div>
-                  <span class="poll-pct" style="color:#4ade80">41%</span>
-                </div>
-              </div>
-            </div>
-            <div class="cand-check" id="check-0" aria-hidden="true"></div>
-          </div>
-
-          <!-- TICKET B: KALONZO + SIFUNA -->
-          <div class="cand-card" data-ticket="1"
-               role="radio" aria-checked="false" tabindex="0"
-               onclick="selectTicket(1)" onkeydown="keySelectTicket(event,1)">
-            <div class="cand-top">
-              <div class="cand-portrait" style="background:linear-gradient(160deg,#0e2347,#1a3a7a);">
-                <svg width="100" height="110" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M50 10 L82 28 L82 62 Q82 88 50 102 Q18 88 18 62 L18 28 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                  <path d="M22 110 Q24 85 50 80 Q76 85 78 110Z" fill="#1a3a7a"/>
-                  <path d="M50 80 L42 93 L50 96 L58 93 Z" fill="#0e2347"/>
-                  <ellipse cx="50" cy="63" rx="16" ry="18" fill="#b8926a"/>
-                  <ellipse cx="50" cy="49" rx="16" ry="7" fill="#1a0a00"/>
-                  <ellipse cx="44" cy="63" rx="2.5" ry="3" fill="#6a4020"/>
-                  <ellipse cx="56" cy="63" rx="2.5" ry="3" fill="#6a4020"/>
-                  <path d="M44 72 Q50 76 56 72" stroke="#6a4020" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                  <rect x="18" y="105" width="64" height="4" rx="2" fill="#2563eb"/>
-                </svg>
-              </div>
-              <div class="cand-body">
-                <span class="cand-party-badge" style="background:rgba(37,99,235,0.2);color:#60a5fa;border:1px solid rgba(37,99,235,0.3);">ODM Coalition</span>
-                <div class="cand-names">Kalonzo <span class="sep">·</span> Sifuna</div>
-                <div class="cand-desc">Wiper Leader · ODM Secretary General</div>
-                <div class="poll-row">
-                  <div class="poll-track"><div class="poll-fill" style="width:29%;background:#2563eb"></div></div>
-                  <span class="poll-pct" style="color:#60a5fa">29%</span>
-                </div>
-              </div>
-            </div>
-            <div class="cand-check" id="check-1" aria-hidden="true"></div>
-          </div>
-
-          <!-- TICKET C: GACHAGUA + MATIANGI -->
-          <div class="cand-card" data-ticket="2"
-               role="radio" aria-checked="false" tabindex="0"
-               onclick="selectTicket(2)" onkeydown="keySelectTicket(event,2)">
-            <div class="cand-top">
-              <div class="cand-portrait" style="background:linear-gradient(160deg,#3b1a04,#6b3010);">
-                <svg width="100" height="110" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M50 10 L82 28 L82 62 Q82 88 50 102 Q18 88 18 62 L18 28 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                  <path d="M22 110 Q24 85 50 80 Q76 85 78 110Z" fill="#6b3010"/>
-                  <path d="M50 80 L42 93 L50 96 L58 93 Z" fill="#3b1a04"/>
-                  <ellipse cx="50" cy="63" rx="16" ry="18" fill="#c09060"/>
-                  <ellipse cx="50" cy="49" rx="16" ry="8" fill="#0a0500"/>
-                  <ellipse cx="44" cy="63" rx="2.5" ry="3" fill="#704020"/>
-                  <ellipse cx="56" cy="63" rx="2.5" ry="3" fill="#704020"/>
-                  <path d="M44 72 Q50 76 56 72" stroke="#704020" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                  <rect x="18" y="105" width="64" height="4" rx="2" fill="#ea580c"/>
-                </svg>
-              </div>
-              <div class="cand-body">
-                <span class="cand-party-badge" style="background:rgba(234,88,12,0.2);color:#fb923c;border:1px solid rgba(234,88,12,0.3);">United Opposition</span>
-                <div class="cand-names">Gachagua <span class="sep">·</span> Matiang'i</div>
-                <div class="cand-desc">Former Deputy President · Former Interior CS</div>
-                <div class="poll-row">
-                  <div class="poll-track"><div class="poll-fill" style="width:23%;background:#ea580c"></div></div>
-                  <span class="poll-pct" style="color:#fb923c">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="cand-check" id="check-2" aria-hidden="true"></div>
-          </div>
-
-        </div>
-
-        <button class="btn btn-primary" id="btn-next-select" onclick="goToPhone()" disabled>
-          Continue to Verify Phone →
-        </button>
-        <p class="field-hint" id="select-hint">Select a presidential ticket to continue</p>
-      </div>
-    </section>
-
-    <!-- STEP 2: PHONE -->
-    <section id="step-phone" class="step-panel" aria-labelledby="step2-heading">
-      <div class="section-wrap">
-        <p class="section-eyebrow">Step 2 of 4</p>
-        <h2 class="section-title" id="step2-heading">Your Safaricom Number</h2>
-        <p class="section-sub">Your phone verifies your identity and receives the M-Pesa prompt.</p>
-
-        <div id="phone-ticket-preview" class="ticket-preview" aria-live="polite"></div>
-
-        <div class="field-group">
-          <label class="field-label" for="phone-input">Phone Number</label>
-          <div class="phone-wrap">
-            <div class="phone-prefix">🇰🇪 +254</div>
-            <input class="phone-input" type="tel" id="phone-input"
-              placeholder="7XX XXX XXX" maxlength="9"
-              inputmode="numeric" pattern="[0-9]*"
-              aria-describedby="phone-error phone-hint"
-              oninput="onPhoneInput()">
-          </div>
-          <p class="field-error" id="phone-error" role="alert" aria-live="assertive"></p>
-          <p class="field-hint" id="phone-hint">Enter your 9-digit Safaricom number (e.g. 712 345 678)</p>
-        </div>
-
-        <div class="info-card">
-          <div class="info-icon">🔒</div>
-          <div>
-            <div class="info-title">One phone. One vote. No exceptions.</div>
-            <div class="info-body">Your number verifies your M-Pesa payment and permanently locks this vote to your line. It is never shared or used for any other purpose.</div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary btn-pay" id="btn-proceed-pay" onclick="goToPay()" disabled>
-          Proceed to M-Pesa Payment →
-        </button>
-        <button class="btn btn-ghost" onclick="goBack(1)">← Back</button>
-      </div>
-    </section>
-
-    <!-- STEP 3: PAYMENT -->
-    <section id="step-pay" class="step-panel" aria-labelledby="step3-heading">
-      <div class="section-wrap">
-        <p class="section-eyebrow">Step 3 of 4</p>
-        <h2 class="section-title" id="step3-heading">M-Pesa Payment</h2>
-
-        <div class="mpesa-header">
-          <div class="mpesa-badge">M&#8209;PESA</div>
-          <span class="mpesa-tagline">Secure · Instant · Verified</span>
-        </div>
-
-        <div class="payment-grid">
-          <div class="stat-card">
-            <div class="stat-label">Voting Fee</div>
-            <div class="stat-value green">KES 5</div>
-            <div class="stat-sub">One-time, non-refundable</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Sending To</div>
-            <div class="stat-value" id="pay-phone-display" style="font-size:18px;letter-spacing:0.04em;">—</div>
-            <div class="stat-sub">Receiving STK push</div>
-          </div>
-        </div>
-
-        <div class="steps-box" id="stk-instructions">
-          <div class="steps-box-title">How it works</div>
-          <ol class="steps-list">
-            <li>Tap <strong>Send STK Push</strong> below</li>
-            <li>An M-Pesa prompt appears on your phone</li>
-            <li>Enter your M-Pesa PIN to confirm KES 5</li>
-            <li>Your vote is unlocked automatically</li>
-          </ol>
-        </div>
-
-        <div id="stk-action">
-          <button class="btn btn-mpesa" onclick="initiatePay()">
-            📱 Send STK Push — KES 5
-          </button>
-        </div>
-
-        <div id="pay-waiting" class="waiting-state" hidden aria-live="polite">
-          <div class="spinner" role="status" aria-label="Waiting for payment"></div>
-          <p class="waiting-title">Waiting for your payment...</p>
-          <p class="waiting-sub">Check your phone and enter your M-Pesa PIN</p>
-          <div class="poll-timer">Verifying in <span id="countdown">5</span>s</div>
-          <button class="btn btn-ghost btn-sm" onclick="resendSTK()" style="margin-top:16px">
-            Didn't receive the prompt? Resend
-          </button>
-        </div>
-
-        <div id="pay-error" class="pay-error" hidden role="alert">
-          <span id="pay-error-msg"></span>
-          <button class="btn btn-ghost btn-sm" onclick="retryPay()">Try Again</button>
-        </div>
-
-        <button class="btn btn-ghost" onclick="goBack(2)" id="btn-back-pay">← Back</button>
-      </div>
-    </section>
-
-    <!-- STEP 4: CONFIRM & CAST VOTE -->
-    <section id="step-vote" class="step-panel" aria-labelledby="step4-heading">
-      <div class="section-wrap">
-        <p class="section-eyebrow">Step 4 of 4 · Final Step</p>
-        <h2 class="section-title" id="step4-heading">Cast Your Vote</h2>
-
-        <div class="payment-confirmed">
-          <span class="pc-icon">✅</span>
-          <div>
-            <div class="pc-title">Payment Confirmed</div>
-            <div class="pc-receipt" id="vote-receipt-display">M-Pesa receipt verified</div>
-          </div>
-        </div>
-
-        <p class="field-label" style="margin-bottom:10px">Your selected ticket</p>
-        <div id="vote-ticket-preview" class="ticket-preview" style="margin-bottom:20px"></div>
-
-        <div class="warning-box" role="alert">
-          ⚠️ This action is <strong>final and irreversible.</strong> Once cast, your vote cannot be changed and your phone number will be permanently locked to this choice.
-        </div>
-
-        <button class="btn btn-vote" id="btn-cast-vote" onclick="castVote()">
-          🗳️ Cast My Vote Now
-        </button>
-        <div id="vote-error" class="pay-error" hidden role="alert">
-          <span id="vote-error-msg"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- STEP 5: SUCCESS -->
-    <section id="step-success" class="step-panel" aria-labelledby="success-heading">
-      <div class="section-wrap">
-        <div class="success-wrap">
-          <div class="success-icon">🗳️</div>
-          <h2 class="success-title" id="success-heading">Vote Cast!</h2>
-          <p class="success-sub">
-            Your voice has been heard. Your vote is securely recorded.<br>
-            <strong style="color:rgba(255,255,255,0.9)">Thank you for shaping Kenya's future.</strong>
-          </p>
-
-          <div class="receipt-card" aria-label="Official vote receipt">
-            <div class="receipt-title">🧾 Official Vote Receipt</div>
-            <div class="receipt-row"><span>Candidate</span><span id="rc-candidate">—</span></div>
-            <div class="receipt-row"><span>Phone Number</span><span id="rc-phone">—</span></div>
-            <div class="receipt-row"><span>M-Pesa Receipt</span><span id="rc-mpesa">—</span></div>
-            <div class="receipt-row"><span>Vote ID</span><span id="rc-vote-id">—</span></div>
-            <div class="receipt-row"><span>Date &amp; Time</span><span id="rc-time">—</span></div>
-            <div class="receipt-row"><span>Status</span><span class="rc-confirmed">✓ Confirmed</span></div>
-          </div>
-
-          <button class="btn btn-ghost" onclick="shareReceipt()" style="margin-top:16px">
-            📤 Share Your Receipt
-          </button>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <p>Kenya Civic Digital Voting Initiative · 2027</p>
-    <p>Powered by M-Pesa · End-to-End Encrypted · Tamper-Proof Ledger</p>
-  </footer>
-
+<!-- Kenya Flag bar -->
+<div class="flag-bar" aria-hidden="true">
+  <div style="background:#006600"></div>
+  <div style="background:#000;flex:.15"></div>
+  <div style="background:#bb0000"></div>
+  <div style="background:#000;flex:.15"></div>
+  <div style="background:#006600"></div>
 </div>
 
-<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<!-- IEBC HEADER -->
+<header class="iebc-header">
+  <div class="iebc-left">
+    <!-- IEBC Logo SVG -->
+    <div class="iebc-logo-wrap" title="IEBC — Independent Electoral and Boundaries Commission">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="IEBC Logo">
+        <!-- Outer circle - Kenyan green -->
+        <circle cx="50" cy="50" r="48" fill="#006600" stroke="#c8a400" stroke-width="3"/>
+        <!-- Inner white ring -->
+        <circle cx="50" cy="50" r="38" fill="none" stroke="white" stroke-width="1.5"/>
+        <!-- Shield shape - Maasai shield inspired -->
+        <path d="M50 18 L68 28 L68 55 Q68 72 50 82 Q32 72 32 55 L32 28 Z" fill="white" opacity="0.95"/>
+        <!-- Shield stripes (Kenyan flag colors) -->
+        <path d="M50 18 L68 28 L68 38 L32 38 L32 28 Z" fill="#006600"/>
+        <rect x="32" y="38" width="36" height="6" fill="#000"/>
+        <rect x="32" y="44" width="36" height="10" fill="#bb0000"/>
+        <rect x="32" y="54" width="36" height="6" fill="#000"/>
+        <path d="M32 60 L32 55 Q32 72 50 82 Q68 72 68 55 L68 60 Z" fill="#006600"/>
+        <!-- Traditional spears -->
+        <line x1="43" y1="14" x2="43" y2="86" stroke="#c8a400" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="57" y1="14" x2="57" y2="86" stroke="#c8a400" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="43,14 40,22 46,22" fill="#c8a400"/>
+        <polygon points="57,14 54,22 60,22" fill="#c8a400"/>
+        <polygon points="43,86 40,78 46,78" fill="#c8a400"/>
+        <polygon points="57,86 54,78 60,78" fill="#c8a400"/>
+        <!-- IEBC text ring -->
+        <text x="50" y="98" font-family="Arial" font-size="7" fill="#c8a400" text-anchor="middle" font-weight="bold" letter-spacing="1">IEBC · KENYA</text>
+      </svg>
+    </div>
+    <div class="iebc-wordmark">
+      <div class="org">IEBC</div>
+      <div class="full">Independent Electoral &amp; Boundaries Commission</div>
+    </div>
+  </div>
+  <div class="secure-badge">
+    <div class="secure-dot"></div>
+    SECURE · ENCRYPTED
+  </div>
+</header>
 
-<script src="/static/js/app.js"></script>
+<!-- HERO -->
+<div class="hero">
+  <!-- Kenya Flag SVG -->
+  <svg class="kenya-flag-svg" viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg" aria-label="Flag of Kenya">
+    <rect width="90" height="60" fill="#006600"/>
+    <rect y="15" width="90" height="8" fill="#000"/>
+    <rect y="23" width="90" height="14" fill="#bb0000"/>
+    <rect y="37" width="90" height="8" fill="#000"/>
+    <!-- Shield -->
+    <path d="M45 12 L58 20 L58 38 Q58 50 45 56 Q32 50 32 38 L32 20 Z" fill="white" opacity="0.9"/>
+    <path d="M45 12 L58 20 L58 26 L32 26 L32 20 Z" fill="#006600"/>
+    <rect x="32" y="26" width="26" height="4" fill="#000"/>
+    <rect x="32" y="30" width="26" height="7" fill="#bb0000"/>
+    <rect x="32" y="37" width="26" height="3" fill="#000"/>
+    <path d="M32 40 Q32 50 45 56 Q58 50 58 40 Z" fill="#006600"/>
+    <line x1="40" y1="10" x2="40" y2="58" stroke="white" stroke-width="1.5"/>
+    <line x1="50" y1="10" x2="50" y2="58" stroke="white" stroke-width="1.5"/>
+  </svg>
+  <p class="hero-eyebrow">Republic of Kenya · August 9, 2027</p>
+  <h1 class="hero-title">Kenya <em>General</em><br>Election 2027</h1>
+  <span class="hero-year">PRESIDENTIAL BALLOT</span>
+  <p class="hero-sub">Cast your vote securely via M-Pesa. Every vote is encrypted, verified, and counted in real time. Your voice shapes Kenya's future.</p>
+</div>
+
+<!-- STEPPER -->
+<nav class="stepper" aria-label="Voting steps">
+  <div class="stepper-track">
+    <div class="s-step active" id="dot0">1</div>
+    <div class="s-line" id="line01"></div>
+    <div class="s-step" id="dot1">2</div>
+    <div class="s-line" id="line12"></div>
+    <div class="s-step" id="dot2">3</div>
+    <div class="s-line" id="line23"></div>
+    <div class="s-step" id="dot3">4</div>
+    <div class="s-line" id="line34"></div>
+    <div class="s-step" id="dot4">5</div>
+  </div>
+  <div class="stepper-labels">
+    <span>Register</span>
+    <span>Ballot</span>
+    <span>Pay</span>
+    <span>Confirm</span>
+    <span>Done</span>
+  </div>
+</nav>
+
+<main>
+
+  <!-- STEP 1: REGISTRATION -->
+  <section id="panel-register" class="panel active">
+    <div class="wrap">
+      <p class="eyebrow">Step 1 of 5 — Voter Registration</p>
+      <h2 class="panel-title">Verify Your Identity</h2>
+      <p class="panel-sub">Enter your details exactly as they appear on your National ID. You must be 18 years or older and a registered Kenyan voter to proceed.</p>
+
+      <div class="form-grid">
+        <div class="field form-col-full">
+          <label for="r-name">Full Name (as on National ID)</label>
+          <input type="text" id="r-name" placeholder="e.g. Jane Akinyi Odhiambo" autocomplete="name">
+          <span class="field-err" id="err-name"></span>
+        </div>
+        <div class="field">
+          <label for="r-id">National ID Number</label>
+          <input type="text" id="r-id" placeholder="e.g. 12345678" maxlength="8" inputmode="numeric">
+          <span class="field-err" id="err-id"></span>
+        </div>
+        <div class="field">
+          <label for="r-age">Date of Birth</label>
+          <input type="date" id="r-dob" max="">
+          <span class="field-err" id="err-dob"></span>
+        </div>
+        <div class="field">
+          <label for="r-county">County</label>
+          <div class="select-wrap">
+            <select id="r-county">
+              <option value="">— Select County —</option>
+              <option>Baringo</option><option>Bomet</option><option>Bungoma</option>
+              <option>Busia</option><option>Elgeyo-Marakwet</option><option>Embu</option>
+              <option>Garissa</option><option>Homa Bay</option><option>Isiolo</option>
+              <option>Kajiado</option><option>Kakamega</option><option>Kericho</option>
+              <option>Kiambu</option><option>Kilifi</option><option>Kirinyaga</option>
+              <option>Kisii</option><option>Kisumu</option><option>Kitui</option>
+              <option>Kwale</option><option>Laikipia</option><option>Lamu</option>
+              <option>Machakos</option><option>Makueni</option><option>Mandera</option>
+              <option>Marsabit</option><option>Meru</option><option>Migori</option>
+              <option>Mombasa</option><option>Murang'a</option><option>Nairobi</option>
+              <option>Nakuru</option><option>Nandi</option><option>Narok</option>
+              <option>Nyamira</option><option>Nyandarua</option><option>Nyeri</option>
+              <option>Samburu</option><option>Siaya</option><option>Taita-Taveta</option>
+              <option>Tana River</option><option>Tharaka-Nithi</option><option>Trans Nzoia</option>
+              <option>Turkana</option><option>Uasin Gishu</option><option>Vihiga</option>
+              <option>Wajir</option><option>West Pokot</option>
+            </select>
+          </div>
+          <span class="field-err" id="err-county"></span>
+        </div>
+        <div class="field">
+          <label for="r-subcounty">Sub-County / Constituency</label>
+          <input type="text" id="r-subcounty" placeholder="e.g. Westlands">
+          <span class="field-err" id="err-subcounty"></span>
+        </div>
+        <div class="field form-col-full">
+          <label>Registered Phone Number (Safaricom)</label>
+          <div class="phone-row">
+            <div class="phone-pfx">🇰🇪 +254</div>
+            <input type="tel" id="r-phone" placeholder="7XX XXX XXX" maxlength="9" inputmode="numeric" pattern="[0-9]*">
+          </div>
+          <span class="field-err" id="err-phone"></span>
+        </div>
+      </div>
+
+      <div class="info-box green">
+        <div class="info-box-icon">🔒</div>
+        <div class="info-box-text">
+          <div class="ib-title">Your data is protected under the Data Protection Act, 2019</div>
+          <div class="ib-body">All personal information is encrypted end-to-end and used solely for election verification. Your phone number will receive an M-Pesa STK push to authenticate your vote.</div>
+        </div>
+      </div>
+
+      <button class="btn btn-gold" id="btn-reg" onclick="submitReg()">Continue to Ballot →</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: BALLOT -->
+  <section id="panel-ballot" class="panel">
+    <div class="wrap">
+      <p class="eyebrow">Step 2 of 5 — Presidential Ballot</p>
+      <h2 class="panel-title">Cast Your Presidential Vote</h2>
+      <p class="panel-sub">Mark your preferred presidential ticket. Tick only ONE candidate.</p>
+
+      <div class="ballot-header">
+        <div class="ballot-seal">🗳️</div>
+        <div class="ballot-info">
+          <div class="bh-title">Official Presidential Ballot — 2027 General Election</div>
+          <div class="bh-sub">Issued by the Independent Electoral and Boundaries Commission (IEBC) · Kenya</div>
+        </div>
+      </div>
+
+      <div class="ballot-paper" id="ballot-paper">
+        <div class="ballot-paper-header">
+          <div class="bp-title">PRESIDENTIAL ELECTION — KENYA 2027</div>
+          <div class="bp-sub">KURA YA URAIS · KENYATTA INTERNATIONAL CONVENTION CENTRE · NAIROBI</div>
+        </div>
+        <div class="ballot-paper-instr">Place an ✗ or ✓ in the box next to your chosen candidate</div>
+
+        <!-- CANDIDATE 1 -->
+        <div class="candidate-row" data-id="ruto" onclick="selectCandidate('ruto')">
+          <div class="ballot-num">1</div>
+          <div class="cand-portrait-area">
+            <!-- Artistic SVG silhouette — Ruto-era styling: suit, stocky build -->
+            <svg width="70" height="80" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Candidate portrait illustration">
+              <ellipse cx="35" cy="30" rx="14" ry="16" fill="#8B6914"/>
+              <ellipse cx="35" cy="18" rx="14" ry="8" fill="#3a2010"/>
+              <rect x="16" y="48" width="38" height="32" rx="4" fill="#003366"/>
+              <path d="M35 48 L27 62 L35 66 L43 62 Z" fill="#001a33"/>
+              <ellipse cx="28" cy="30" rx="2" ry="2.5" fill="#5a3a10"/>
+              <ellipse cx="42" cy="30" rx="2" ry="2.5" fill="#5a3a10"/>
+              <path d="M29 38 Q35 42 41 38" stroke="#5a3a10" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="party-logo-area">
+            <!-- UDA Party Logo SVG -->
+            <svg width="58" height="58" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" aria-label="UDA Party Logo">
+              <circle cx="29" cy="29" r="27" fill="#FFD700" stroke="#cc9900" stroke-width="2"/>
+              <text x="29" y="22" font-family="Arial Black" font-size="10" fill="#000" text-anchor="middle" font-weight="900">UDA</text>
+              <text x="29" y="33" font-family="Arial" font-size="5" fill="#333" text-anchor="middle" font-weight="700">UNITED DEMOCRATIC</text>
+              <text x="29" y="40" font-family="Arial" font-size="5" fill="#333" text-anchor="middle" font-weight="700">ALLIANCE</text>
+              <path d="M14 44 Q29 52 44 44" stroke="#cc9900" stroke-width="2" fill="none"/>
+              <!-- Hustler symbol -->
+              <text x="29" y="50" font-family="Arial" font-size="7" fill="#006600" text-anchor="middle">🤝</text>
+            </svg>
+          </div>
+          <div class="cand-info-area">
+            <div class="cand-name-big">H.E. WILLIAM S. RUTO</div>
+            <div class="cand-running-mate">Running Mate: Hon. Kithure Kindiki (DP)</div>
+            <div class="cand-party-name">United Democratic Alliance (UDA) — Kenya Kwanza</div>
+            <div class="cand-tagline">"Bottom-Up Economic Model · Hustler Nation"</div>
+          </div>
+          <div class="ballot-tick"><div class="tick-box" id="tick-ruto"></div></div>
+        </div>
+
+        <!-- CANDIDATE 2 -->
+        <div class="candidate-row" data-id="kalonzo" onclick="selectCandidate('kalonzo')">
+          <div class="ballot-num">2</div>
+          <div class="cand-portrait-area">
+            <svg width="70" height="80" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Candidate portrait illustration">
+              <ellipse cx="35" cy="30" rx="14" ry="16" fill="#7a5010"/>
+              <ellipse cx="35" cy="18" rx="14" ry="7" fill="#1a0a00"/>
+              <rect x="16" y="48" width="38" height="32" rx="4" fill="#800000"/>
+              <path d="M35 48 L27 62 L35 66 L43 62 Z" fill="#4a0000"/>
+              <ellipse cx="28" cy="30" rx="2" ry="2.5" fill="#4a2a08"/>
+              <ellipse cx="42" cy="30" rx="2" ry="2.5" fill="#4a2a08"/>
+              <path d="M29 38 Q35 42 41 38" stroke="#4a2a08" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="party-logo-area">
+            <!-- Wiper Party Logo -->
+            <svg width="58" height="58" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" aria-label="Wiper Party Logo">
+              <circle cx="29" cy="29" r="27" fill="#cc0000" stroke="#880000" stroke-width="2"/>
+              <text x="29" y="21" font-family="Arial Black" font-size="8" fill="#fff" text-anchor="middle" font-weight="900">WIPER</text>
+              <text x="29" y="30" font-family="Arial" font-size="5" fill="#ffdd00" text-anchor="middle">DEMOCRATIC</text>
+              <text x="29" y="37" font-family="Arial" font-size="5" fill="#ffdd00" text-anchor="middle">MOVEMENT</text>
+              <path d="M18 43 Q29 50 40 43" stroke="#ffdd00" stroke-width="2" fill="none"/>
+              <text x="29" y="51" font-family="Arial" font-size="6" fill="#fff" text-anchor="middle">K E N Y A</text>
+            </svg>
+          </div>
+          <div class="cand-info-area">
+            <div class="cand-name-big">HON. STEPHEN KALONZO MUSYOKA</div>
+            <div class="cand-running-mate">Running Mate: TBA — Wiper Party</div>
+            <div class="cand-party-name">Wiper Democratic Movement — Azimio Coalition</div>
+            <div class="cand-tagline">"Umoja · Haki · Maendeleo"</div>
+          </div>
+          <div class="ballot-tick"><div class="tick-box" id="tick-kalonzo"></div></div>
+        </div>
+
+        <!-- CANDIDATE 3 -->
+        <div class="candidate-row" data-id="mwangi" onclick="selectCandidate('mwangi')">
+          <div class="ballot-num">3</div>
+          <div class="cand-portrait-area">
+            <svg width="70" height="80" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Candidate portrait illustration">
+              <ellipse cx="35" cy="30" rx="14" ry="16" fill="#6a4010"/>
+              <ellipse cx="35" cy="18" rx="14" ry="7" fill="#100800"/>
+              <rect x="16" y="48" width="38" height="32" rx="4" fill="#1a1a1a"/>
+              <path d="M35 48 L27 62 L35 66 L43 62 Z" fill="#0a0a0a"/>
+              <ellipse cx="28" cy="30" rx="2" ry="2.5" fill="#3a2008"/>
+              <ellipse cx="42" cy="30" rx="2" ry="2.5" fill="#3a2008"/>
+              <path d="M29 38 Q35 42 41 38" stroke="#3a2008" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="party-logo-area">
+            <!-- Boniface Mwangi / PAWA 254 independent -->
+            <svg width="58" height="58" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" aria-label="Independent Candidate Logo">
+              <circle cx="29" cy="29" r="27" fill="#1a3a6a" stroke="#2563eb" stroke-width="2"/>
+              <text x="29" y="19" font-family="Arial Black" font-size="6" fill="#fff" text-anchor="middle">PAWA 254</text>
+              <text x="29" y="29" font-family="Arial Black" font-size="8" fill="#60a5fa" text-anchor="middle">✊</text>
+              <text x="29" y="39" font-family="Arial" font-size="5" fill="#aaa" text-anchor="middle">PEOPLE'S PARTY</text>
+              <text x="29" y="47" font-family="Arial" font-size="4.5" fill="#60a5fa" text-anchor="middle">ACCOUNTABILITY</text>
+              <text x="29" y="53" font-family="Arial" font-size="4.5" fill="#60a5fa" text-anchor="middle">& REFORM</text>
+            </svg>
+          </div>
+          <div class="cand-info-area">
+            <div class="cand-name-big">MR. BONIFACE MWANGI</div>
+            <div class="cand-running-mate">Running Mate: TBA — PAWA 254</div>
+            <div class="cand-party-name">People's Party of Kenya — Independent</div>
+            <div class="cand-tagline">"Reclaim Our Dignity · Anti-Corruption · New Kenya"</div>
+          </div>
+          <div class="ballot-tick"><div class="tick-box" id="tick-mwangi"></div></div>
+        </div>
+
+        <!-- CANDIDATE 4 -->
+        <div class="candidate-row" data-id="matiangi" onclick="selectCandidate('matiangi')">
+          <div class="ballot-num">4</div>
+          <div class="cand-portrait-area">
+            <svg width="70" height="80" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Candidate portrait illustration">
+              <ellipse cx="35" cy="30" rx="14" ry="16" fill="#7a5510"/>
+              <ellipse cx="35" cy="18" rx="14" ry="7" fill="#200800"/>
+              <rect x="16" y="48" width="38" height="32" rx="4" fill="#2d4a00"/>
+              <path d="M35 48 L27 62 L35 66 L43 62 Z" fill="#1a2d00"/>
+              <ellipse cx="28" cy="30" rx="2" ry="2.5" fill="#4a3008"/>
+              <ellipse cx="42" cy="30" rx="2" ry="2.5" fill="#4a3008"/>
+              <path d="M29 38 Q35 42 41 38" stroke="#4a3008" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="party-logo-area">
+            <!-- Fred Matiangi / Independent Green Kenya -->
+            <svg width="58" height="58" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" aria-label="Party Logo">
+              <circle cx="29" cy="29" r="27" fill="#1a4a00" stroke="#33aa00" stroke-width="2"/>
+              <text x="29" y="19" font-family="Arial Black" font-size="6" fill="#fff" text-anchor="middle">DEMOCRACY</text>
+              <text x="29" y="28" font-family="Arial Black" font-size="7" fill="#88ff44" text-anchor="middle">KENYA</text>
+              <path d="M20 33 Q29 28 38 33 Q29 42 20 33Z" fill="#88ff44" opacity="0.7"/>
+              <text x="29" y="45" font-family="Arial" font-size="4.5" fill="#aad" text-anchor="middle">FRED MATIANG'I</text>
+              <text x="29" y="52" font-family="Arial" font-size="4.5" fill="#88ff44" text-anchor="middle">INDEPENDENT</text>
+            </svg>
+          </div>
+          <div class="cand-info-area">
+            <div class="cand-name-big">DR. FRED MATIANG'I</div>
+            <div class="cand-running-mate">Running Mate: TBA — Democracy Kenya</div>
+            <div class="cand-party-name">Democracy Kenya Party — Independent</div>
+            <div class="cand-tagline">"Strong Institutions · Security · Transformative Leadership"</div>
+          </div>
+          <div class="ballot-tick"><div class="tick-box" id="tick-matiangi"></div></div>
+        </div>
+
+      </div>
+
+      <button class="btn btn-gold" id="btn-ballot" onclick="submitBallot()" disabled>
+        Proceed to Payment →
+      </button>
+      <button class="btn btn-ghost" onclick="goBack('panel-register',0)">← Back</button>
+    </div>
+  </section>
+
+  <!-- STEP 3: PAYMENT -->
+  <section id="panel-pay" class="panel">
+    <div class="wrap">
+      <p class="eyebrow">Step 3 of 5 — M-Pesa Payment</p>
+      <h2 class="panel-title">Pay Voting Fee</h2>
+      <p class="panel-sub">A one-time KES 5 fee verifies your identity via M-Pesa and ensures one person, one vote.</p>
+
+      <div class="mpesa-logo-row">
+        <div class="mpesa-pill">M&#8209;PESA</div>
+        <span style="font-size:12px;color:var(--muted)">Safaricom · Secure · Instant</span>
+      </div>
+
+      <div class="pay-stats">
+        <div class="pay-stat">
+          <div class="ps-label">Voting Fee</div>
+          <div class="ps-val green">KES 5</div>
+          <div class="ps-sub">One-time · Non-refundable</div>
+        </div>
+        <div class="pay-stat">
+          <div class="ps-label">Paybill Number</div>
+          <div class="ps-val" style="font-size:18px;color:var(--gold)" id="pay-paybill">0142809568</div>
+          <div class="ps-sub">IEBC Official Account</div>
+        </div>
+      </div>
+
+      <div class="pay-stat" style="margin-bottom:22px">
+        <div class="ps-label">Sending STK to</div>
+        <div class="ps-val" style="font-size:20px;color:var(--white)" id="pay-phone-show">+254 —</div>
+        <div class="ps-sub">Your Safaricom number</div>
+      </div>
+
+      <div class="stk-steps" id="stk-how">
+        <div class="stk-steps-title">How M-Pesa Payment Works</div>
+        <ol class="stk-steps">
+          <li>Tap <strong>Send M-Pesa Request</strong> below</li>
+          <li>An M-Pesa prompt appears on your phone screen</li>
+          <li>Enter your <strong>M-Pesa PIN</strong> to confirm KES 5</li>
+          <li>Your vote is automatically unlocked &amp; recorded</li>
+        </ol>
+      </div>
+
+      <div id="stk-action-btn">
+        <button class="btn btn-mpesa" onclick="initiatePay()">
+          📱 Send M-Pesa Request — KES 5
+        </button>
+      </div>
+
+      <div id="stk-waiting" class="waiting-box" hidden>
+        <div class="spinner"></div>
+        <div class="wt">Waiting for payment...</div>
+        <div class="ws">Check your phone and enter your M-Pesa PIN</div>
+        <div class="countdown">Auto-verifying in <span id="ctdown">15</span>s...</div>
+        <button class="btn btn-ghost btn-sm" onclick="resendSTK()">Didn't receive prompt? Resend</button>
+      </div>
+
+      <div id="stk-error" class="info-box red" hidden>
+        <div class="info-box-icon">⚠️</div>
+        <div id="stk-error-msg" style="font-size:13px"></div>
+      </div>
+
+      <button class="btn btn-ghost" onclick="goBack('panel-ballot',1)" id="btn-back-pay">← Back</button>
+    </div>
+  </section>
+
+  <!-- STEP 4: REVIEW & CAST -->
+  <section id="panel-confirm" class="panel">
+    <div class="wrap">
+      <p class="eyebrow">Step 4 of 5 — Final Review</p>
+      <h2 class="panel-title">Confirm Your Vote</h2>
+      <p class="panel-sub">Review your selection carefully. This action is permanent and cannot be undone.</p>
+
+      <div class="confirmed-badge">
+        <div class="cb-icon">✅</div>
+        <div>
+          <div class="cb-title">M-Pesa Payment Confirmed</div>
+          <div class="cb-sub" id="confirm-receipt-text">Receipt verified</div>
+        </div>
+      </div>
+
+      <div class="review-ticket">
+        <div class="rt-label">Your Selected Candidate</div>
+        <div id="review-candidate-name" style="font-family:'EB Garamond',serif;font-size:22px;font-weight:700;margin-bottom:4px"></div>
+        <div id="review-party" style="font-size:12px;color:var(--muted)"></div>
+      </div>
+
+      <div class="review-ticket">
+        <div class="rt-label">Your Voter Details</div>
+        <div id="review-voter-info" style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7"></div>
+      </div>
+
+      <div class="final-warning">
+        ⚠️ By clicking <strong>Cast My Vote Now</strong>, you confirm that:
+        <ul style="margin-top:8px;padding-left:20px;list-style:disc;line-height:1.8;font-size:12px;color:var(--muted)">
+          <li>You are a registered Kenyan voter aged 18 and above</li>
+          <li>This is your free choice, made without coercion</li>
+          <li>You understand this vote is <strong style="color:var(--white)">final and irrevocable</strong></li>
+        </ul>
+      </div>
+
+      <button class="btn btn-red" id="btn-cast" onclick="castVote()">
+        🗳️ Cast My Vote Now
+      </button>
+      <div id="cast-error" class="info-box red" hidden style="margin-top:12px">
+        <span id="cast-error-msg"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 5: SUCCESS -->
+  <section id="panel-success" class="panel">
+    <div class="wrap">
+      <div class="success-hero">
+        <div class="success-icon">🗳️</div>
+        <h2 class="success-title">Vote Recorded!</h2>
+        <p class="success-sub">
+          Your vote has been securely cast and encrypted.<br>
+          <strong style="color:rgba(255,255,255,0.9)">Asante sana — Thank you for shaping Kenya's future.</strong>
+        </p>
+
+        <div class="receipt">
+          <div class="receipt-head">🧾 Official IEBC Vote Receipt</div>
+          <div class="receipt-row"><span>Voter Name</span><span id="rc-name">—</span></div>
+          <div class="receipt-row"><span>National ID</span><span id="rc-id">—</span></div>
+          <div class="receipt-row"><span>Phone</span><span id="rc-phone">—</span></div>
+          <div class="receipt-row"><span>County</span><span id="rc-county">—</span></div>
+          <div class="receipt-row"><span>Candidate Voted</span><span id="rc-candidate">—</span></div>
+          <div class="receipt-row"><span>M-Pesa Receipt</span><span id="rc-mpesa">—</span></div>
+          <div class="receipt-row"><span>Vote ID</span><span id="rc-vote-id">—</span></div>
+          <div class="receipt-row"><span>Timestamp</span><span id="rc-time">—</span></div>
+          <div class="receipt-row"><span>Status</span><span class="confirmed">✓ CONFIRMED</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- LIVE RESULTS -->
+<section class="results-panel" id="live-results">
+  <div class="results-wrap">
+    <div class="total-votes">
+      <div class="tv-label">Total Votes Cast (Live)</div>
+      <div class="tv-count" id="total-votes-count">0</div>
+      <div class="tv-sub">Updated in real time · 2027 General Election</div>
+    </div>
+
+    <div class="results-title">
+      Live Results
+      <span class="live-chip"><span class="live-chip-dot"></span>LIVE</span>
+    </div>
+    <p class="results-sub">Results update automatically every 5 seconds. Powered by end-to-end encrypted tallying.</p>
+
+    <div id="results-bars"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2027 Independent Electoral and Boundaries Commission (IEBC) · Republic of Kenya</p>
+  <p>Powered by M-Pesa · End-to-End Encrypted · Tamper-Proof Digital Ledger</p>
+  <p>For assistance call IEBC Help Desk: <strong>1500</strong> (Toll Free) · info@iebc.or.ke</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ─── CANDIDATE DATA ───────────────────────────────────────────────
+const CANDIDATES = {
+  ruto:     { name: 'H.E. William S. Ruto', party: 'United Democratic Alliance (UDA) — Kenya Kwanza', color: '#FFD700' },
+  kalonzo:  { name: 'Hon. Stephen Kalonzo Musyoka', party: 'Wiper Democratic Movement — Azimio Coalition', color: '#cc0000' },
+  mwangi:   { name: 'Mr. Boniface Mwangi', party: "People's Party of Kenya (PAWA 254)", color: '#2563eb' },
+  matiangi: { name: "Dr. Fred Matiang'i", party: 'Democracy Kenya Party — Independent', color: '#33aa00' }
+};
+
+// ─── STATE ────────────────────────────────────────────────────────
+const STATE = {
+  currentPanel: 'panel-register',
+  currentStep: 0,
+  voter: {},
+  selectedCandidate: null,
+  mpesaReceipt: null,
+  voteId: null
+};
+
+// ─── VOTE TALLY (localStorage-persisted, simulated backend) ───────
+function getTally() {
+  try {
+    const t = JSON.parse(localStorage.getItem('ke27_tally') || 'null');
+    if (t && t.ruto !== undefined) return t;
+  } catch(e) {}
+  return { ruto: 1840, kalonzo: 1120, mwangi: 430, matiangi: 290 };
+}
+function saveTally(t) {
+  try { localStorage.setItem('ke27_tally', JSON.stringify(t)); } catch(e) {}
+}
+
+// ─── UTILS ───────────────────────────────────────────────────────
+function toast(msg, dur=3200) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), dur);
+}
+
+function genVoteId() {
+  return 'KE27-' + Math.random().toString(36).substr(2,4).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+}
+
+function genMpesaReceipt() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+  return Array.from({length:10}, () => chars[Math.floor(Math.random()*chars.length)]).join('');
+}
+
+function fmtPhone(p) {
+  return '+254 ' + p.substr(0,3) + ' ' + p.substr(3,3) + ' ' + p.substr(6);
+}
+
+function setPanel(id, step) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  STATE.currentPanel = id;
+  STATE.currentStep = step;
+  updateStepper(step);
+  window.scrollTo({top: document.querySelector('.stepper').offsetTop - 10, behavior:'smooth'});
+}
+
+function updateStepper(step) {
+  for(let i=0;i<5;i++) {
+    const dot = document.getElementById('dot'+i);
+    dot.className = 's-step';
+    if(i < step) dot.classList.add('done');
+    else if(i === step) dot.classList.add('active');
+  }
+  ['01','12','23','34'].forEach((pair,i) => {
+    const line = document.getElementById('line'+pair);
+    if(line) line.className = 's-line' + (i < step ? ' done' : '');
+  });
+}
+
+function goBack(panel, step) { setPanel(panel, step); }
+
+// ─── STEP 1: REGISTRATION ────────────────────────────────────────
+function submitReg() {
+  let valid = true;
+
+  const name = document.getElementById('r-name').value.trim();
+  const idNum = document.getElementById('r-id').value.trim();
+  const dob = document.getElementById('r-dob').value;
+  const county = document.getElementById('r-county').value;
+  const subcounty = document.getElementById('r-subcounty').value.trim();
+  const phone = document.getElementById('r-phone').value.trim().replace(/\s/g,'');
+
+  // Clear errors
+  ['name','id','dob','county','subcounty','phone'].forEach(f => {
+    document.getElementById('err-'+f).textContent = '';
+  });
+
+  if(!name || name.length < 3) { document.getElementById('err-name').textContent = 'Enter your full name as on National ID'; valid=false; }
+  if(!/^\d{7,8}$/.test(idNum)) { document.getElementById('err-id').textContent = 'Enter a valid 7-8 digit National ID number'; valid=false; }
+
+  // Age check — must be 18+
+  if(!dob) {
+    document.getElementById('err-dob').textContent = 'Date of birth is required'; valid=false;
+  } else {
+    const today = new Date();
+    const birth = new Date(dob);
+    const age = today.getFullYear() - birth.getFullYear() - (today < new Date(today.getFullYear(), birth.getMonth(), birth.getDate()) ? 1 : 0);
+    if(age < 18) { document.getElementById('err-dob').textContent = 'You must be 18 years or older to vote'; valid=false; }
+  }
+
+  if(!county) { document.getElementById('err-county').textContent = 'Select your county'; valid=false; }
+  if(!subcounty || subcounty.length < 3) { document.getElementById('err-subcounty').textContent = 'Enter your sub-county or constituency'; valid=false; }
+
+  if(!/^(07|01)\d{8}$/.test('0'+phone) && !/^\d{9}$/.test(phone)) {
+    document.getElementById('err-phone').textContent = 'Enter a valid 9-digit Safaricom number (e.g. 712345678)'; valid=false;
+  }
+
+  if(!valid) return;
+
+  // Check if already voted
+  const voted = JSON.parse(localStorage.getItem('ke27_voted') || '{}');
+  if(voted[idNum]) {
+    document.getElementById('err-id').textContent = '⚠️ This National ID has already been used to vote in this election.';
+    return;
+  }
+
+  STATE.voter = { name, idNum, dob, county, subcounty, phone };
+  setPanel('panel-ballot', 1);
+  toast('✅ Identity verified. Please select your candidate.');
+}
+
+// ─── STEP 2: BALLOT ──────────────────────────────────────────────
+function selectCandidate(id) {
+  STATE.selectedCandidate = id;
+  document.querySelectorAll('.candidate-row').forEach(r => r.classList.remove('selected'));
+  document.querySelectorAll('.tick-box').forEach(t => { t.textContent = ''; });
+  document.querySelector(`[data-id="${id}"]`).classList.add('selected');
+  document.getElementById('tick-'+id).textContent = '✓';
+  document.getElementById('btn-ballot').disabled = false;
+}
+
+function submitBallot() {
+  if(!STATE.selectedCandidate) { toast('Please select a candidate first'); return; }
+  document.getElementById('pay-phone-show').textContent = fmtPhone(STATE.voter.phone);
+  setPanel('panel-pay', 2);
+  toast('✅ Candidate selected. Proceed to payment.');
+}
+
+// ─── STEP 3: PAYMENT ─────────────────────────────────────────────
+let payTimer = null;
+
+function initiatePay() {
+  document.getElementById('stk-action-btn').hidden = true;
+  document.getElementById('stk-how').hidden = true;
+  document.getElementById('stk-waiting').hidden = false;
+  document.getElementById('stk-error').hidden = true;
+  document.getElementById('btn-back-pay').hidden = true;
+
+  // Simulate STK push countdown + auto-verify
+  let secs = 15;
+  document.getElementById('ctdown').textContent = secs;
+
+  payTimer = setInterval(() => {
+    secs--;
+    document.getElementById('ctdown').textContent = secs;
+    if(secs <= 0) {
+      clearInterval(payTimer);
+      verifyPayment();
+    }
+  }, 1000);
+}
+
+function resendSTK() {
+  clearInterval(payTimer);
+  document.getElementById('stk-waiting').hidden = true;
+  document.getElementById('stk-action-btn').hidden = false;
+  document.getElementById('stk-how').hidden = false;
+  document.getElementById('btn-back-pay').hidden = false;
+  toast('📱 Resend the STK push by tapping the button.');
+}
+
+function verifyPayment() {
+  // Simulate payment verification — 95% success rate
+  const success = Math.random() > 0.05;
+  document.getElementById('stk-waiting').hidden = true;
+
+  if(!success) {
+    document.getElementById('stk-error').hidden = false;
+    document.getElementById('stk-error-msg').textContent = 'Payment not confirmed. Please try again or check your M-Pesa balance.';
+    document.getElementById('stk-action-btn').hidden = false;
+    document.getElementById('stk-how').hidden = false;
+    document.getElementById('btn-back-pay').hidden = false;
+    return;
+  }
+
+  STATE.mpesaReceipt = genMpesaReceipt();
+  STATE.voteId = genVoteId();
+
+  // Populate confirm panel
+  const cand = CANDIDATES[STATE.selectedCandidate];
+  document.getElementById('review-candidate-name').textContent = cand.name;
+  document.getElementById('review-party').textContent = cand.party;
+  document.getElementById('confirm-receipt-text').textContent = `M-Pesa Receipt: ${STATE.mpesaReceipt} · KES 5 confirmed`;
+  document.getElementById('review-voter-info').innerHTML = `
+    <strong>${STATE.voter.name}</strong><br>
+    ID: ${STATE.voter.idNum} &nbsp;·&nbsp; County: ${STATE.voter.county}<br>
+    Sub-County: ${STATE.voter.subcounty} &nbsp;·&nbsp; Phone: ${fmtPhone(STATE.voter.phone)}
+  `;
+
+  setPanel('panel-confirm', 3);
+  toast('✅ Payment confirmed! Review your vote carefully before casting.');
+}
+
+// ─── STEP 4: CAST VOTE ───────────────────────────────────────────
+function castVote() {
+  const btn = document.getElementById('btn-cast');
+  btn.disabled = true;
+  btn.textContent = '⏳ Recording your vote...';
+
+  setTimeout(() => {
+    // Save vote
+    const voted = JSON.parse(localStorage.getItem('ke27_voted') || '{}');
+    voted[STATE.voter.idNum] = true;
+    localStorage.setItem('ke27_voted', JSON.stringify(voted));
+
+    // Update tally
+    const tally = getTally();
+    tally[STATE.selectedCandidate] = (tally[STATE.selectedCandidate] || 0) + 1;
+    saveTally(tally);
+
+    // Populate receipt
+    const cand = CANDIDATES[STATE.selectedCandidate];
+    document.getElementById('rc-name').textContent = STATE.voter.name;
+    document.getElementById('rc-id').textContent = STATE.voter.idNum;
+    document.getElementById('rc-phone').textContent = fmtPhone(STATE.voter.phone);
+    document.getElementById('rc-county').textContent = STATE.voter.county + ' · ' + STATE.voter.subcounty;
+    document.getElementById('rc-candidate').textContent = cand.name;
+    document.getElementById('rc-mpesa').textContent = STATE.mpesaReceipt;
+    document.getElementById('rc-vote-id').textContent = STATE.voteId;
+    document.getElementById('rc-time').textContent = new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' });
+
+    setPanel('panel-success', 4);
+    updateResults();
+    document.getElementById('live-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    toast('🗳️ Your vote has been cast. Asante!');
+  }, 2000);
+}
+
+// ─── LIVE RESULTS ─────────────────────────────────────────────────
+function updateResults() {
+  const tally = getTally();
+  const total = Object.values(tally).reduce((a,b) => a+b, 0);
+  document.getElementById('total-votes-count').textContent = total.toLocaleString();
+
+  const container = document.getElementById('results-bars');
+  const sorted = Object.entries(tally).sort((a,b) => b[1]-a[1]);
+
+  container.innerHTML = sorted.map(([id, votes]) => {
+    const cand = CANDIDATES[id];
+    const pct = total > 0 ? ((votes/total)*100).toFixed(1) : 0;
+    const leading = id === sorted[0][0];
+    return `
+      <div class="result-bar-row">
+        <div class="rbr-top">
+          <span class="rbr-name" style="color:${cand.color}">
+            ${leading ? '👑 ' : ''}${cand.name.split(' ').slice(-1)[0]}
+          </span>
+          <span class="rbr-votes">${votes.toLocaleString()} votes</span>
+        </div>
+        <div class="rbr-track">
+          <div class="rbr-fill" style="width:${pct}%;background:${cand.color}"></div>
+        </div>
+        <div class="rbr-pct" style="color:${cand.color}">${pct}%</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Auto-refresh results every 5s (simulate live updates from other voters)
+function autoRefreshResults() {
+  setInterval(() => {
+    // Small random fluctuation to simulate incoming votes
+    const tally = getTally();
+    const ids = Object.keys(CANDIDATES);
+    const rand = ids[Math.floor(Math.random()*ids.length)];
+    const inc = Math.floor(Math.random()*3);
+    tally[rand] = (tally[rand]||0) + inc;
+    saveTally(tally);
+    updateResults();
+  }, 5000);
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Set max DOB to 18 years ago
+  const maxDob = new Date();
+  maxDob.setFullYear(maxDob.getFullYear() - 18);
+  document.getElementById('r-dob').max = maxDob.toISOString().split('T')[0];
+
+  updateResults();
+  autoRefreshResults();
+});
+</script>
 </body>
 </html>

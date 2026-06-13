@@ -54,7 +54,7 @@ async def startup():
 
 @app.get("/")
 async def root():
-    return FileResponse("../index.html")
+    return FileResponse("index.html")
 
 @app.get("/health")
 async def health():

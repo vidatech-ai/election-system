@@ -1,9 +1,5 @@
-fastapi==0.111.0
-uvicorn[standard]==0.30.1
-sqlalchemy==2.0.31
-asyncpg==0.29.0
-alembic==1.13.2
-pydantic==2.7.4
-pydantic-settings==2.3.4
-httpx==0.27.0
-python-dotenv==1.0.1
+fastapi==0.110.0
+uvicorn==0.24.0
+pydantic==1.10.13
+starlette==0.36.3
+typing-extensions==4.8.0

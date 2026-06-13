@@ -9,7 +9,7 @@
   'use strict';
 
   /* ─── Config ──────────────────────────────────────────────────── */
-  var API_BASE = '';  // same-origin; change to 'https://yourdomain.com' for external
+  var API_BASE = 'https://election-system-api.onrender.com';
 
   /* ─── State ───────────────────────────────────────────────────── */
   var state = {
@@ -59,7 +59,7 @@
       headers: { 'Content-Type': 'application/json' }
     };
     if (body) opts.body = JSON.stringify(body);
-    return fetch(API_BASE + '/api' + path, opts).then(function (r) {
+    return fetch(API_BASE + path, opts).then(function (r) {
       return r.json().then(function (data) {
         if (!r.ok) throw new Error(data.detail || 'Request failed');
         return data;

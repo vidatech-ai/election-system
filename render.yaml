@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: kenya-election-2027
+    env: python
+    region: oregon
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: election-db
+          property: connectionString
+      - key: MPESA_CONSUMER_KEY
+        sync: false
+      - key: MPESA_CONSUMER_SECRET
+        sync: false
+      - key: MPESA_SHORTCODE
+        sync: false
+      - key: MPESA_PASSKEY
+        sync: false
+      - key: MPESA_CALLBACK_URL
+        sync: false
+      - key: MPESA_RECIPIENT_PHONE
+        value: "+254142809568"
+      - key: MPESA_ENV
+        value: "production"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: VOTE_FEE_KES
+        value: "5"
+    healthCheckPath: /health
+
+databases:
+  - name: election-db
+    databaseName: election_db
+    user: election_user
+    plan: free
